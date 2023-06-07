@@ -20,4 +20,15 @@ public record Content(
         LocalDateTime dateUpdated,
         String url
 ) {
+
+    // Copy constructor
+    private Content(Content original, Integer id) {
+        this(id, original.title, original.description, original.status, original.contentType, original.dateCreated, LocalDateTime.now(), original.url);
+    }
+
+    // Copy method
+    public Content withId(Integer id) {
+        return new Content(this, id);
+    }
+
 }

@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 /**
  * {DESCRIPTION}
@@ -33,7 +35,17 @@ public class ContentCollectionRepository {
     }
 
     public void save(Content content) {
-        contentList.add(content);
+        OptionalInt indexOpt = IntStream.range(0, contentList.size())
+                .filter(i -> contentList.get(i).id().equals(content.id()))
+                .findFirst();
+        if (indexOpt.isPresent()) {
+            // update
+            contentList.remove(indexOpt.getAsInt());
+            contentList.add(indexOpt.getAsInt(), content.withId(indexOpt.getAsInt() + 1));
+        } else {
+            // insert
+            contentList.add(content.withId(contentList.size() + 1));
+        }
     }
 
     @PostConstruct
@@ -51,4 +63,11 @@ public class ContentCollectionRepository {
         contentList.add(item);
     }
 
+    public boolean existById(Integer id) {
+        return contentList.stream().filter(content -> content.id().equals(id)).count() == 1;
+    }
+
+    public void delete(Integer id) {
+        contentList.removeIf(content -> content.id().equals(id));
+    }
 }
