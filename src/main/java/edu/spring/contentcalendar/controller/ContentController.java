@@ -2,13 +2,15 @@ package edu.spring.contentcalendar.controller;
 
 import edu.spring.contentcalendar.model.Content;
 import edu.spring.contentcalendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * {DESCRIPTION}
@@ -17,6 +19,17 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/v1/content")
+@CrossOrigin(
+        allowCredentials = "true",
+        origins = {"http://localhost:4200"},
+        allowedHeaders = {"Origin", "Access-Control-Allow-Origin", "Content-Type",
+                "Accept", "Jwt-Token", "Authorization", "X-Requested-With",
+                "Access-Control-Request-Method", "Access-Control-Request-Headers"},
+        exposedHeaders = {"Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization",
+                "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "File-Name"},
+        methods = {GET, POST, PUT, PATCH, DELETE, OPTIONS},
+        maxAge = 3600
+)
 public class ContentController {
 
     private final ContentCollectionRepository repository;
@@ -43,7 +56,7 @@ public class ContentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void create(@RequestBody Content content) {
+    public void create(@Valid @RequestBody Content content) {
         repository.save(content);
     }
 
@@ -52,7 +65,6 @@ public class ContentController {
     public void update(@RequestBody Content content, @PathVariable Integer id) {
         repository.save(content);
     }
-
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")

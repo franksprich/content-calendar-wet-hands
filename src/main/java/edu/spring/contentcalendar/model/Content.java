@@ -1,6 +1,6 @@
 package edu.spring.contentcalendar.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 //@JsonInclude(JsonInclude.Include.NON_ABSENT)
 public record Content(
         Integer id,
+        @NotBlank
         String title,
         String description,
         Status status,

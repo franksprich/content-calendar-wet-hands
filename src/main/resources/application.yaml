@@ -1,1 +1,24 @@
+# ===============================
+# = Postgres
+# ===============================
+#custom:
+#  db:
+#    name: edu_customer
+#    default_schema: public
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/${custom.db.name}?currentSchema=${custom.db.default_schema}
+#    username: alien
+#    password: alien@1974
+#    driver-class-name: org.postgresql.Driver
 
+# ===============================
+# = H2
+# ===============================
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    generate-unique-name: false
+    name: content
