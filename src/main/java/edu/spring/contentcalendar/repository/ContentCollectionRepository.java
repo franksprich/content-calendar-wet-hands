@@ -19,21 +19,24 @@ import java.util.stream.IntStream;
  * @author Frank Sprich
  */
 @Repository
-public class ContentCollectionRepository {
+public class ContentCollectionRepository implements ContentRepository {
 
     private final List<Content> contentList = new ArrayList<>();
 
     public ContentCollectionRepository() {
     }
 
+    @Override
     public List<Content> findAll() {
         return contentList;
     }
 
+    @Override
     public Optional<Content> findById(Integer id) {
         return contentList.stream().filter(content -> content.id().equals(id)).findFirst();
     }
 
+    @Override
     public void save(Content content) {
         OptionalInt indexOpt = IntStream.range(0, contentList.size())
                 .filter(i -> contentList.get(i).id().equals(content.id()))
@@ -67,6 +70,7 @@ public class ContentCollectionRepository {
         return contentList.stream().filter(content -> content.id().equals(id)).count() == 1;
     }
 
+    @Override
     public void delete(Integer id) {
         contentList.removeIf(content -> content.id().equals(id));
     }

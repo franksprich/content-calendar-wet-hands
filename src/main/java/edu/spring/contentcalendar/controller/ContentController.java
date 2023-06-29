@@ -2,6 +2,7 @@ package edu.spring.contentcalendar.controller;
 
 import edu.spring.contentcalendar.model.Content;
 import edu.spring.contentcalendar.repository.ContentCollectionRepository;
+import edu.spring.contentcalendar.repository.ContentJdbcTemplateRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +33,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 )
 public class ContentController {
 
-    private final ContentCollectionRepository repository;
+//    private final ContentCollectionRepository repository;
+    private final ContentJdbcTemplateRepository repository;
 
-    public ContentController(ContentCollectionRepository repository) {
+    public ContentController(
+//            ContentCollectionRepository repository
+            ContentJdbcTemplateRepository repository
+    ) {
         this.repository = repository;
     }
 

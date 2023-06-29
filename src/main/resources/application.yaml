@@ -11,14 +11,30 @@
 #    username: alien
 #    password: alien@1974
 #    driver-class-name: org.postgresql.Driver
-
-# ===============================
-# = H2
-# ===============================
 spring:
+# ===============================
+# = DB/H2
+# ===============================
   h2:
     console:
       enabled: true
   datasource:
     generate-unique-name: false
     name: content
+## Not needed due to using H2
+#  sql:
+#    init:
+#      mode: always
+#      schema-locations: schema.sql
+
+# ===============================
+# = LOGGING
+# ===============================
+logging:
+  level:
+    org:
+      springframework:
+        jdbc: debug
+#    edu:
+#      spring:
+#        contentcalendar: info
