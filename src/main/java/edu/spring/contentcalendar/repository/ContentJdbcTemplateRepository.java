@@ -17,7 +17,7 @@ import java.util.Optional;
  * @author Frank Sprich
  */
 @Repository
-public class ContentJdbcTemplateRepository implements ContentRepository {
+public class ContentJdbcTemplateRepository implements MyContentRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -49,7 +49,7 @@ public class ContentJdbcTemplateRepository implements ContentRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         String sql = "DELETE FROM Content WHERE id=?";
         jdbcTemplate.update(sql, id);
     }

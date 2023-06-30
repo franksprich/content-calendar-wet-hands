@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
  * @author Frank Sprich
  */
 @Repository
-public class ContentCollectionRepository implements ContentRepository {
+public class ContentCollectionRepository implements MyContentRepository {
 
     private final List<Content> contentList = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class ContentCollectionRepository implements ContentRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         contentList.removeIf(content -> content.id().equals(id));
     }
 }

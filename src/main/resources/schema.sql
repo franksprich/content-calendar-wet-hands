@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Content (
     id INTEGER AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
-    desc TEXT,
+    description TEXT,
     status VARCHAR(20),
     content_type VARCHAR(50),
     date_created TIMESTAMP NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Content (
 
 INSERT INTO Content (
                      title,
-                     desc,
+                     description,
                      status,
                      content_type,
                      date_created

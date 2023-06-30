@@ -1,8 +1,8 @@
 package edu.spring.contentcalendar.controller;
 
 import edu.spring.contentcalendar.model.Content;
-import edu.spring.contentcalendar.repository.ContentCollectionRepository;
-import edu.spring.contentcalendar.repository.ContentJdbcTemplateRepository;
+import edu.spring.contentcalendar.model.Status;
+import edu.spring.contentcalendar.repository.ContentRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,11 +34,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class ContentController {
 
 //    private final ContentCollectionRepository repository;
-    private final ContentJdbcTemplateRepository repository;
+//    private final ContentJdbcTemplateRepository repository;
+    private final ContentRepository repository;
 
     public ContentController(
 //            ContentCollectionRepository repository
-            ContentJdbcTemplateRepository repository
+//            ContentJdbcTemplateRepository repository
+            ContentRepository repository
     ) {
         this.repository = repository;
     }
@@ -74,7 +76,17 @@ public class ContentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
-        repository.delete(id);
+        repository.deleteById(id);
+    }
+
+    @GetMapping("/filter/{keyword}")
+    public ResponseEntity<List<Content>> findByTitle(@PathVariable String keyword) {
+        return ResponseEntity.ok(repository.findAllByTitleContains(keyword));
+    }
+
+    @GetMapping("/filter/status/{status}")
+    public ResponseEntity<List<Content>> findByStatus(@PathVariable Status status) {
+        return ResponseEntity.ok(repository.listByStatus(status));
     }
 
 }

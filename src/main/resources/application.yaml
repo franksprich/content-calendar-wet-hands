@@ -1,18 +1,18 @@
 # ===============================
-# = Postgres
+# = Custom
 # ===============================
-#custom:
-#  db:
-#    name: edu_customer
-#    default_schema: public
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/${custom.db.name}?currentSchema=${custom.db.default_schema}
-#    username: alien
-#    password: alien@1974
-#    driver-class-name: org.postgresql.Driver
+cc:
+  welcome-message: Welcome to Content Calendar
+  about: This is a Content Calendar
+# ===============================
+# = Common
+# ===============================
+server:
+  port: 8080
 spring:
-# ===============================
+  profiles:
+    active:
+  # ===============================
 # = DB/H2
 # ===============================
   h2:
@@ -26,7 +26,19 @@ spring:
 #    init:
 #      mode: always
 #      schema-locations: schema.sql
-
+# ===============================
+# = Postgres
+# ===============================
+#custom:
+#  db:
+#    name: edu_customer
+#    default_schema: public
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/${custom.db.name}?currentSchema=${custom.db.default_schema}
+#    username: alien
+#    password: alien@1974
+#    driver-class-name: org.postgresql.Driver
 # ===============================
 # = LOGGING
 # ===============================
@@ -38,3 +50,4 @@ logging:
 #    edu:
 #      spring:
 #        contentcalendar: info
+
