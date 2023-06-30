@@ -16,7 +16,7 @@ public record Content(
         Integer id,
         @NotBlank
         String title,
-        String description,
+        String desc,
         Status status,
         Type contentType,
         LocalDateTime dateCreated,
@@ -26,7 +26,7 @@ public record Content(
 
     // Copy constructor
     private Content(Content original, Integer id) {
-        this(id, original.title, original.description, original.status, original.contentType, original.dateCreated, LocalDateTime.now(), original.url);
+        this(id, original.title, original.desc, original.status, original.contentType, original.dateCreated, LocalDateTime.now(), original.url);
     }
 
     // Copy method

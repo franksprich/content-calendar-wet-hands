@@ -29,23 +29,23 @@ public class Application {
 //        Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(ContentRepository repository) {
-        return args -> {
-            log.info("Hello {}", "You");
-            // insert some data into the database
-            Content item = new Content(
-                    null,
-                    "What's new in ChatGPT",
-                    "Chattergut",
-                    Status.IDEA,
-                    Type.ARTICLE,
-                    LocalDateTime.now(),
-                    null,
-                    null
-            );
-            repository.save(item);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(ContentRepository repository) {
+//        return args -> {
+//            log.info("Hello {}", "You");
+//            // insert some data into the database
+//            Content item = new Content(
+//                    null,
+//                    "What's new in ChatGPT",
+//                    "Chattergut",
+//                    Status.IDEA,
+//                    Type.ARTICLE,
+//                    LocalDateTime.now(),
+//                    null,
+//                    null
+//            );
+//            repository.save(item);
+//        };
+//    }
 
 }

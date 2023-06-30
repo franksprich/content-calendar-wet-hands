@@ -1,0 +1,6 @@
+# ===============================
+# = Custom
+# ===============================
+cc:
+  welcome-message: THIS IS PRODUCTION!!
+  about: PRODUCTION about message

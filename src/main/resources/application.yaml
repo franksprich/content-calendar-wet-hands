@@ -4,6 +4,7 @@
 cc:
   welcome-message: Welcome to Content Calendar
   about: This is a Content Calendar
+
 # ===============================
 # = Common
 # ===============================
@@ -11,7 +12,7 @@ server:
   port: 8080
 spring:
   profiles:
-    active:
+    active: prod
   # ===============================
 # = DB/H2
 # ===============================
@@ -50,4 +51,11 @@ logging:
 #    edu:
 #      spring:
 #        contentcalendar: info
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

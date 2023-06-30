@@ -41,10 +41,10 @@ public class ContentJdbcTemplateRepository implements MyContentRepository {
     public void save(Content content) {
         if (null == content.id()) {
             String sql = "INSERT INTO Content (title, desc, status, content_type, date_created, url) VALUES (?, ?, ?, ?, NOW(), ?)";
-            jdbcTemplate.update(sql, content.title(), content.description(), content.status().name(), content.contentType().name(), content.url());
+            jdbcTemplate.update(sql, content.title(), content.desc(), content.status().name(), content.contentType().name(), content.url());
         } else {
             String sql = "UPDATE Content SET title=?, desc=?, status=?, content_type=?, date_updated=NOW(), url=? WHERE id=?";
-            jdbcTemplate.update(sql, content.title(), content.description(), content.status().name(), content.contentType().name(), content.url(), content.id());
+            jdbcTemplate.update(sql, content.title(), content.desc(), content.status().name(), content.contentType().name(), content.url(), content.id());
         }
     }
 
